@@ -51,15 +51,15 @@ int main(int argc, const char **argv)
             osm_data = std::move(*data);
     }
     
-    // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
-    // user input for these values using std::cin. Pass the user input to the
-    // RoutePlanner object below in place of 10, 10, 90, 90.
+
   float start_x, start_y, end_x, end_y;
   std::cin >> start_x;
   std::cin >> start_y;
   std::cin >> end_x; 
   std::cin >> end_y;
 
+  if ((start_x >= 0 && start_x <= 100 && start_y >= 0 && start_y <= 100 && end_x >= 0 && end_x <= 100 && end_y >= 0 && end_y <= 100) && (!(start_x == end_x && start_y == end_y)))
+  {
     // Build Model.
     RouteModel model{osm_data};
 
@@ -80,4 +80,8 @@ int main(int argc, const char **argv)
         render.Display(surface);
     });
     display.begin_show();
+  }
+  else {
+	  std::cout << "The coordinates you entered were not valid. " << "\n";
+  }
 }
